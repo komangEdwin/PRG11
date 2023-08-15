@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Animal</title>
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+
+    <style>
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .no-scroll {
+            overflow: hidden;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+        }
+
+        .animal-modal {
+            z-index: 9999;
+            display: none;
+            /* Ini akan menyembunyikan modal saat halaman pertama kali dimuat */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .modal-content {
+            background-color: #fefefe;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            /* Aktifkan pengguliran vertikal */
+            max-height: 90vh;
+            /* Atur tinggi maksimum */
+        }
+
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .section {
+            margin: 10px 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #loading {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .loader {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .box:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <header class="header">
+
+        <a href="#" class="logo"> <i class="fas fa-paw"></i> zoo</a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#about">about</a>
+            <a href="#gallery">galeri</a>
+            <a href="#animal">animal</a>
+            <a href="#pricing">harga</a>
+            <a href="#contact">kontak</a>
+        </nav>
+
+        <div class="icons">
+            <div id="login-btn" class="fas fa-user"></div>
+            <div id="menu-btn" class="fas fa-bars"></div>
+        </div>
+
+        <!-- login form -->
+
+        <form action="" class="login-form">
+
+            <h3>login form</h3>
+
+            <input type="email" placeholder="Enter your email" class="box">
+            <input type="password" placeholder="Enter your password" class="box">
+            <div class="remember">
+                <input type="checkbox" name="" id="remember-me">
+                <label for="remember-me">ingatkan saya</label>
+            </div>
+            <a href="#" class="btn">login</a>
+
+        </form>
+
+    </header>
+
+
+    <!-- end -->
+
+    <div id="loading" style="display: none;">
+        <div class="loader"></div>
+    </div>
+
+
+    <!-- home -->
+
+    <section class="home" id="home">
+
+        <div class="content">
+            <h3>nikmati petualangan yang luar biasa<br>
+                dari melihat<br>hewan</h3>
+            <a href="#" class="btn">bertemulah dengan hewan</a>
+        </div>
+
+        <img src="images/bottom_wave.png" alt="" class="wave">
+
+    </section>
+
+    <!-- end -->
+
+    <!-- about -->
+
+    <section class="about" id="about">
+
+        <div class="box-container">
+
+            <div class="image">
+                <img src="images/about.png" alt="">
+            </div>
+
+            <div class="content">
+                <h3 class="title">Kamu Dapat Menemukan Semua Spesies yang Paling Populer</h3>
+                <p>Hewan-hewan yang paling populer mencakup beragam spesies, mulai dari singa dan gajah yang mengesankan
+                    dengan keagungan dan kekuatan mereka,
+                    hingga panda raksasa dan kura-kura yang memukau dengan pesona dan daya tarik khas mereka</p>
+
+                <div class="icons-container">
+                    <div class="icons">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>we educate</h3>
+                    </div>
+                    <div class="icons">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>we play</h3>
+                    </div>
+                    <div class="icons">
+                        <i class="fas fa-book-open"></i>
+                        <h3>getting to know</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- end -->
+
+    <!-- gallery -->
+
+
+
+
+    <!-- end -->
+
+    <section class="gallery" id="gallery">
+
+        <h2 class="heading">galeri</h2>
+
+        <div class="swiper gallery-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="images/gallery-1.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="images/gallery-2.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="images/gallery-3.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="images/gallery-4.jpg" alt="">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+        </div>
+
+    </section>
+
+    <!-- animals -->
+
+    <section class="animal" id="animal">
+
+        <h2 class="heading">Hewan</h2>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="images/animal_1.jpg" alt="">
+                <div class="content">
+                    <h3>Bunglon</h3>
+                    <a href="#" class="btn" onclick="showDetails(event, 'Chameleon')">see datails</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/animals_2.jpg" alt="">
+                <div class="content">
+                    <h3>Zebra</h3>
+                    <a href="#" class="btn" onclick="showDetails(event, 'Zebra')">see datails</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/animals_3.jpg" alt="">
+                <div class="content">
+                    <h3>Jerapah</h3>
+                    <a href="#" class="btn" onclick="showDetails(event, 'Giraffe')">see datails</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="images/animals_4.jpg" alt="">
+                <div class="content">
+                    <h3>Monyet</h3>
+                    <a href="#" class="btn" onclick="showDetails(event, 'Monkey')">see datails</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- end -->
+
+    <!-- banner -->
+
+    <section class="banner">
+
+        <div class="row">
+
+            <div class="content">
+                <h3>stay with pets</h3>
+                <p>Kamu dapat melihat beragam hewan dari berbagai penjuru dunia. Dalam kebun binatang ini,
+                    pengalaman menyaksikan binatang-bantang yang eksotis dan langka memberikan kesempatan untuk
+                    lebih memahami pentingnya konservasi satwa liar dan keanekaragaman hayati.</p>
+            </div>
+
+            <div class="image">
+                <img src="images/banner_1.png" alt="">
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- end -->
+
+    <!-- pricing -->
+
+    <section class="pricing" id="pricing">
+
+        <h2 class="heading">harga</h2>
+
+        <div class="box-container">
+
+            <div class="box pesan" data-package="Individu">
+                <img src="images/pricing1.png" alt="">
+                <h3>individu</h3>
+                <h4 class="price">Rp. 50.000</h4>
+                <p>dibuka dari jam 07:00 Wita - 14:00 Wita</p>
+            </div>
+
+            <div class="box pesan" data-package="Pelajar">
+                <img src="images/pricing2.png" alt="">
+                <h3>Pelajar</h3>
+                <h4 class="price">Rp. 450.000</h4>
+                <p>dibuka dari jam 07:00 Wita - 14:00 Wita</p>
+            </div>
+
+            <div class="box pesan" data-package="Keluarga">
+                <img src="images/pricing1.png" alt="">
+                <h3>keluarga</h3>
+                <h4 class="price">Rp. 175.000</h4>
+                <p>dibuka dari jam 07:00 Wita - 14:00 Wita</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- end -->
+
+    <!-- contact -->
+
+    <section class="contact" id="contact">
+
+        <h2 class="heading">Kontak</h2>
+
+        <form action="">
+
+            <div class="inputBox">
+                <input type="text" placeholder="nama">
+                <input type="email" placeholder="email">
+            </div>
+
+            <div class="inputBox">
+                <input type="number" placeholder="nomor telepon">
+                <input type="text" placeholder="subjek">
+            </div>
+
+            <textarea name="" id="" cols="30" rows="10" placeholder="pesan"></textarea>
+
+            <a href="#" class="btn">kirim pesan</a>
+
+        </form>
+
+    </section>
+
+    <!-- end -->
+
+    <!-- footer -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3><i class="fas fa-paw"></i> zoo</h3>
+                <p>Menawarkan beragam koleksi hewan mulai dari mamalia, burung, reptil, amfibi, hingga serangga.</p>
+                <p class="links"><i class="fas fa-clock"></i>Senin - Jum'at</p>
+                <p class="days">07:00 Wita - 22:00 Wita</p>
+            </div>
+
+            <div class="box">
+                <h3>Info Kontak</h3>
+                <a href="#" class="links"><i class="fas fa-phone"></i> 1234-567-8912</a>
+                <a href="#" class="links"><i class="fas fa-phone"></i> 2345-678-9123</a>
+                <a href="#" class="links"><i class="fas fa-envelope"></i> info@zoobali.com</a>
+                <a href="#" class="links"><i class="fas fa-map-marker-alt"></i> Bali, Indonesia</a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#" class="links"> <i class="fas fa-arrow-right"></i>home</a>
+                <a href="#" class="links"> <i class="fas fa-arrow-right"></i>about</a>
+                <a href="#" class="links"> <i class="fas fa-arrow-right"></i>galeri</a>
+                <a href="#" class="links"> <i class="fas fa-arrow-right"></i>animal</a>
+                <a href="#" class="links"> <i class="fas fa-arrow-right"></i>harga</a>
+            </div>
+
+            <div class="box">
+                <h3>Berita acara</h3>
+                <p>subscribe untuk mendapatkan pemberitahuan</p>
+                <input type="email" placeholder="Your Email" class="email">
+                <a href="#" class="btn">subscribe</a>
+                <div class="share">
+                    <a href="#" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="credit">&copy; 2023 zoobali. All rights reserved by <a href="#" class="link">PRG011</a></div>
+
+    </section>
+
+
+    <!-- Modal -->
+    <div id="animalModal" class="animal-modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h5 class="modal-title" id="animalName"></h5>
+            <div class="section" id="taxonomy"></div>
+            <div class="section" id="locations"></div>
+            <div class="section" id="characteristics"></div>
+        </div>
+    </div>
+
+
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <script src="script.js"></script>
+
+    <script>
+        var scrollPosition = 0;
+        var savedScrollPosition = 0;
+
+        function showDetails(event, animalName) {
+            event.preventDefault();
+            document.body.style.position = 'initial';
+            savedScrollPosition = window.scrollY;
+
+            // Tampilkan efek loading
+            document.getElementById("loading").style.display = "flex";
+
+            // URL API
+            var apiUrl = "https://api.api-ninjas.com/v1/animals?name=" + animalName;
+
+            // Opsi untuk request
+            var requestOptions = {
+                method: 'GET',
+                headers: {
+                    'X-Api-Key': 'B/2dh6Y5S2zMrfovdGB3Lg==dksQks98sHcWCoIf'
+                }
+            };
+
+            // Melakukan fetch ke API
+            fetch(apiUrl, requestOptions)
+                .then(response => response.json())
+                .then(data => {
+                    var i = 0;
+                    if (animalName == 'Monkey') {
+                        i = 1;
+                    }
+                    var animalData = data[i];
+
+                    // Judul
+                    var animalNameElement = document.getElementById("animalName");
+                    animalNameElement.innerHTML = animalData.name;
+                    animalNameElement.style.fontSize = "24px";
+                    animalNameElement.style.fontWeight = "bold";
+                    animalNameElement.style.color = "#3498db";
+                    animalNameElement.style.marginBottom = "15px";
+
+                    // Taxonomy
+                    var taxonomyTable = "<h4 style='font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 10px;'>Taxonomy</h4><table>";
+                    for (var key in animalData.taxonomy) {
+                        taxonomyTable += "<tr><td>" + key + "</td><td>" + animalData.taxonomy[key] + "</td></tr>";
+                    }
+                    taxonomyTable += "</table>";
+                    document.getElementById("taxonomy").innerHTML = taxonomyTable;
+
+                    // Locations
+                    var locationsHtml = "<h4 style='font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 10px;'>Locations</h4>" + animalData.locations.join(", ");
+                    document.getElementById("locations").innerHTML = locationsHtml;
+
+                    // Characteristics
+                    var characteristicsTable = "<h4 style='font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 10px;'>Characteristics</h4><table>";
+                    for (var key in animalData.characteristics) {
+                        characteristicsTable += "<tr><td>" + key + "</td><td>" + animalData.characteristics[key] + "</td></tr>";
+                    }
+                    characteristicsTable += "</table>";
+                    document.getElementById("characteristics").innerHTML = characteristicsTable;
+
+                    // Tambahkan kelas 'fade-in' untuk animasi
+                    var modal = document.getElementById('animalModal');
+                    modal.style.display = "flex";
+                    modal.classList.add('fade-in');
+                    document.body.classList.add('no-scroll');
+
+                    // Sembunyikan efek loading
+                    document.getElementById("loading").style.display = "none";
+                })
+                .catch(error => {
+                    console.log('Error:', error);
+
+                    // Sembunyikan efek loading jika terjadi kesalahan
+                    document.getElementById("loading").style.display = "none";
+                });
+        }
+
+
+
+        function closeModal() {
+            window.scrollTo(0, scrollPosition);
+            window.scrollTo(0, savedScrollPosition);
+            var modal = document.getElementById('animalModal');
+            modal.style.display = "none";
+            modal.classList.remove('fade-in'); // Hapus kelas 'fade-in'
+            document.body.classList.remove('no-scroll');
+        }
+
+        // Saat pengguna mengklik di mana saja di luar modal, tutup itu
+        window.onclick = function (event) {
+            var modal = document.getElementById("animalModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        var boxes = document.querySelectorAll('.pesan');
+
+        boxes.forEach(function (box) {
+            box.addEventListener('click', function () {
+                var paket = this.getAttribute('data-package');
+                window.location.href = "https://wa.me/62895397301166?text=Saya%20mau%20memesan%20paket%20" + paket;
+            });
+        });
+
+
+    </script>
+
+</body>
+
+</html>
